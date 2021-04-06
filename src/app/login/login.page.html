@@ -16,7 +16,7 @@
     </ion-item>
     <ion-row>
       <ion-col>
-        <ion-button class="center-span" type="submit" (click)="onLogin(email, password)">
+        <ion-button  type="submit" (click)="onLogin(email, password)" expand="block">
           ENTRAR
         </ion-button>
       </ion-col>
@@ -26,7 +26,7 @@
       <ion-col>
 
         <p class="ion-text-end">
-          <a href="/forgot-password"> FORGOT PASSWORD?</a>
+          <a routerLink="/forgot-password"> FORGOT PASSWORD??</a>
         </p>
       </ion-col>
 
@@ -34,8 +34,8 @@
     <span class="center-span"> or </span>
 <ion-row>
   <ion-col>
-    <ion-button class="center-span"  type="submit" color="danger" (click)="onLoginGoogle(email, password)"
-    exapand="block">
+    <ion-button  type="submit" color="danger" (click)="onLoginGoogle()"
+    expand="block">
 Login with GOOGLE
     </ion-button>
   </ion-col>
@@ -45,7 +45,7 @@ Login with GOOGLE
   <ion-row>
     <ion-col>
     <p class="ion-text-end">
-      <a href="/register"> CREATE NEW ACCOUNT!!</a>
+      <a routerLink="/register"> CREATE NEW ACCOUNT!!</a>
     </p>
     </ion-col>
 

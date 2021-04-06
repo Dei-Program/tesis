@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../services/auth.service';
-import {emailVerified} from '@angular/fire/auth-guard';
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +10,7 @@ import {emailVerified} from '@angular/fire/auth-guard';
 })
 export class RegisterPage implements OnInit {
 
-  constructor( private authService: AuthService) { }
+  constructor( private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -18,12 +19,20 @@ export class RegisterPage implements OnInit {
   try{
     const user = await  this.authService.register(email.value, password.value );
     if (user){
-      console.log( 'User -->', user);
+      const isVerified = this.authService.isEmailVerified(user);
+      this.redirectUser(isVerified);
     }
   }
   catch (error) {
     console.log('Error', error);
   }
 
+  }
+  private redirectUser(isVerified: boolean): void {
+    if (isVerified) {
+      this.router.navigate(['admin']);
+    } else {
+      this.router.navigate(['verify-email']);
+    }
   }
 }

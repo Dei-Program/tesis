@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import {AuthService} from './../services/auth.service';
+import {AuthService} from '../services/auth.service';
 import { Router} from '@angular/router';
 
 @Component({
@@ -22,7 +22,7 @@ try{
 catch (error){console.log('Error-->', error);
 }
 }
-async onLoginGoogle(email, password){
+async onLoginGoogle(){
 try{
 const user = await this.authService.loginGoogle();
 if ( user ){

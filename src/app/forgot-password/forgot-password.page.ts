@@ -18,7 +18,7 @@ async onResetPassword(email) {
     await this.authService.resetPassword(email.value);
     this.router.navigate(['/login']);
     }catch (error) {
-    console.log('Email ->', email);
+    console.log('Email ->', error);
     }
 }
 }
