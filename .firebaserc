@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "securityplus-130a2": {
+      "hosting": {
+        "app": [
+          "securityplus-130a2"
+        ]
+      }
+    }
+  }
+}
