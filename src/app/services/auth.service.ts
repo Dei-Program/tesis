@@ -89,4 +89,7 @@ export class AuthService {
     };
     return userRef.set(data, {merge: true });
   }
+  public insertData(collection, datauser) {
+      return this.afs.collection(collection).add(datauser);
+  }
 }

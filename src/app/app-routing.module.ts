@@ -32,7 +32,15 @@ const routes: Routes = [
   {
     path: 'forgot-password',
     loadChildren: () => import('./forgot-password/forgot-password.module').then( m => m.ForgotPasswordPageModule)
+  },  {
+    path: 'ubication',
+    loadChildren: () => import('./ubication/ubication.module').then( m => m.UbicationPageModule)
+  },
+  {
+    path: 'chat',
+    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
   }
+
 
 ];
 

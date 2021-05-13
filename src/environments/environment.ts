@@ -6,13 +6,13 @@ export const environment = {
   production: false,
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   firebaseConfig : {
-    apiKey: 'AIzaSyAg8xTGGzV3S3XCzJyS-Y9Vm1QEqcrcM3A',
-    authDomain: 'securityplus-130a2.firebaseapp.com',
-    projectId: 'securityplus-130a2',
-    storageBucket: 'securityplus-130a2.appspot.com',
-    messagingSenderId: '550438210752',
-    appId: '1:550438210752:web:c8d4aa72923c351d277125',
-    measurementId: 'G-BLKCVKKGXV'
+      apiKey: 'AIzaSyB-_gZ7BZO8MnZIPtbf6W8mn5mSsnmJqec',
+      authDomain: 'guardias-8683b.firebaseapp.com',
+      projectId: 'guardias-8683b',
+      storageBucket: 'guardias-8683b.appspot.com',
+      messagingSenderId: '123851671896',
+      appId: '1:123851671896:web:b175a1e1e9cb3391803d2d',
+      measurementId: 'G-4BP9HFVK0B'
   },
 
 };
