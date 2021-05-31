@@ -3,7 +3,7 @@ import {AuthService} from '../services/auth.service';
 
 import { Router } from '@angular/router';
 import { AngularFirestore} from '@angular/fire/firestore';
-import { UserRegister } from '../database/models/user-register'
+import { UserRegister } from '../database/models/user-register';
 import firestore from 'firebase';
 import firebase from 'firebase';
 
@@ -15,6 +15,7 @@ import firebase from 'firebase';
 })
 export class RegisterPage implements OnInit {
 
+  public name: string;
 RegisterUsers: UserRegister;
   constructor(
                 private authService: AuthService, private router: Router, private db: AngularFirestore) {
@@ -25,7 +26,7 @@ RegisterUsers: UserRegister;
   }
   async onRegister(){
   try{
-    const user = await  this.authService.register(this.RegisterUsers.email1, this.RegisterUsers.password);
+    const user = await  this.authService.register(this.RegisterUsers.email1, this.RegisterUsers.password, this.name);
     if (user){
       const isVerified = this.authService.isEmailVerified(user);
       this.redirectUser(isVerified);

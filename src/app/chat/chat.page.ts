@@ -1,15 +1,1 @@
-import { Component, OnInit } from '@angular/core';
-import * as firebase from 'firebase';
-@Component({
-  selector: 'app-chat',
-  templateUrl: './chat.page.html',
-  styleUrls: ['./chat.page.scss'],
-})
-export class ChatPage implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
+import { Component, OnInit } from '@angular/core';import firebase from 'firebase';import 'firebase/firestore';import {NavController} from '@ionic/angular';@Component({  selector: 'app-chat',  templateUrl: './chat.page.html',  styleUrls: ['./chat.page.scss'],})export class ChatPage implements OnInit {  uid;  name;  email;  dp;  users = [];  constructor( public nav:NavController ) {    this.uid.localStorage.getItem('uid');    firebase.firestore().collection('users2').doc(this.uid).get().then(userData => {        this.name.userData.data()['name'];        this.email.userData.data()['email'];        this.dp.userData.data()['dp'];    });    firebase.firestore().collection('users2').get().then(userData => {      userData.forEach(childData => {        if (childData.data()['uid'] = this.uid) {        this.users.push(childData.data());       }      });        });  }  ngOnInit() {  }  gotoChat(uid,name){     sessionStorage.setItem('uid',uid);     sessionStorage.setItem('name',name);}}

@@ -29,7 +29,7 @@
     "@types/google-maps": "^3.2.2",
     "firebase": "^8.3.0",
     "primeicons": "^4.1.0",
-    "primeng": "^11.3.2",
+    "primeng": "^11.4.2",
     "rxjs": "~6.5.5",
     "zone.js": "~0.10.3"
   },
