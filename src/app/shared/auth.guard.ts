@@ -17,6 +17,7 @@ export class AuthGuard implements CanActivate {
         take(1),
         map ((user) => {
           console.log('User=>', user);
+          this.localStorageChat(user);
           if (user){
             return true;
           } else {
@@ -26,4 +27,7 @@ export class AuthGuard implements CanActivate {
             })
     );
   }
+    public localStorageChat(chatlist) {
+        localStorage.setItem('usuario', JSON.stringify(chatlist));
+    }
 }

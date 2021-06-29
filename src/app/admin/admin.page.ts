@@ -12,7 +12,6 @@ export class AdminPage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
-      // tslint:disable-next-line:no-unused-expression
       firebase.auth().onAuthStateChanged(user => {
           if (user){
               firebase
@@ -27,7 +26,9 @@ export class AdminPage implements OnInit {
   }
     private goUbication(): void {
         this.router.navigate(['ubication']);
-        console.log();
+    }
+    private goChat(): void {
+        this.router.navigate(['chat']);
     }
 
 }

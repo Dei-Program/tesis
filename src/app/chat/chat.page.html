@@ -1,39 +1,43 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>CHAT WITH PERSONAL</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>CHAT WITH PERSONAL</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<<ion-list-header>
-    PERFIL
+    <ion-list-header>
+        PERFIL
 
-</ion-list-header>
+    </ion-list-header>
     <ion-item>
         <ion-avatar slot="start">
             <img src="{{dp}}" alt="">
         </ion-avatar>
         <ion-label>
             <h2>
-                <b>{{email}}</b>
+                <b>{{name}}</b>
             </h2>
             <p>
-                @{{name}}
+                @{{email}}
             </p>
         </ion-label>
     </ion-item>
+
+
     <ion-list-header>
         USUARIOS
     </ion-list-header>
-<ion-item lines="none" *ngFor="let user of users">
-   <ion-avatar slot="start">
-    <img src="{{user.dp}}" alt="">
-   </ion-avatar>
-    <h2>
-        <b>{{user.name}}</b>
-    </h2>
-    <p>
-        @{{user.username}}
-    </p>
-</ion-item>
+    <ion-item lines="none" *ngFor="let user of users" (click)="gotoChat(user.uid,user.name)" button="">
+        <ion-avatar slot="start">
+            <img src="{{user.dp}}" alt="">
+        </ion-avatar>
+        <ion-label>
+            <h2>
+                <b>{{user.email}}</b>
+            </h2>
+            <p>
+                @{{user.name}}
+            </p>
+        </ion-label>
+    </ion-item>
 </ion-content>

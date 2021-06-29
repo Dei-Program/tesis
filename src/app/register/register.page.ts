@@ -34,7 +34,6 @@ RegisterUsers: UserRegister;
       console.log('TAREA CREADA PERROS');
       console.log(isVerified);
       this.RegisterUsers = {} as UserRegister;
-
     }
   }
   catch (error) {

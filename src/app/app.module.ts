@@ -13,24 +13,27 @@ import { AngularFireModule} from '@angular/fire';
 import { AngularFirestoreModule} from '@angular/fire/firestore';
 import { environment} from '../environments/environment';
 import {ButtonModule} from 'primeng/button';
-
+import { GoogleMapComponent} from './google-map/google-map.component';
+import { Geolocation} from '@ionic-native/geolocation/ngx';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,
+    GoogleMapComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-      ButtonModule,
+    ButtonModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-      AngularFirestoreModule,
+    AngularFirestoreModule,
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    Geolocation,
+    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
   ],
   bootstrap: [AppComponent]
 })
