@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import {AuthService} from '../services/auth.service';
 import { Router} from '@angular/router';
+import {GooglemapsService} from '../google-map/googlemaps.service';
 
 @Component({
   selector: 'app-login',
@@ -9,11 +10,12 @@ import { Router} from '@angular/router';
 })
 export class LoginPage  {
 
-  constructor(private authService: AuthService, private router: Router ) { }
+  constructor(private authService: AuthService, private router: Router , private GeoRealTime: GooglemapsService) { }
 
 async onLogin(email, password){
 try{
   const user = await this.authService.login(email.value, password.value);
+  await this.GeoRealTime.ionViewDidLoad(user);
   if (user) {
     const isVerified = this.authService.isEmailVerified(user);
     this.redirectUser(isVerified);

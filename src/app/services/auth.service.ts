@@ -3,19 +3,19 @@ import {Injectable} from '@angular/core';
 import {User} from '../shared/user.interfaces';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {AngularFireStorage} from '@angular/fire/storage';
 import {Observable, of} from 'rxjs';
-import {switchMap} from 'rxjs/operators';
-
+import {finalize, switchMap} from 'rxjs/operators';
 import 'firebase/auth';
 import 'firebase/firestore';
-
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
     public user$: Observable<User>;
-    constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private db: AngularFirestore) {
+    constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private db: AngularFirestore,
+                private storage: AngularFireStorage) {
         this.user$ = this.afAuth.authState.pipe(
             switchMap((user) => {
                 if (user) {
@@ -37,22 +37,23 @@ export class AuthService {
     async loginGoogle(): Promise<User> {
         try {
             const {user} = await this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-            this.updateUserData(user);
+            await this.updateUserData(user);
             return user;
         } catch (error) {
             console.log('Error-->', error);
         }
     }
-
-    async register(email: string, password: string, name: string): Promise<User> {
+    async register(email: string, password: string, name: string, phone: string, dp: string) {
         try {
             const {user} = await this.afAuth.createUserWithEmailAndPassword(email, password);
             await this.sendVerificationEmail();
             const uid = user.uid;
-            this.db.collection('users2').doc(uid).set({
-                name: name,
-                uid: uid,
-                email: email
+            await this.db.collection('users2').doc(uid).set({
+                name,
+                uid,
+                email,
+                phone,
+                dp
             });
             return user;
         } catch (error) {
@@ -63,8 +64,9 @@ export class AuthService {
     async login(email: string, password: string): Promise<User> {
         try {
             const {user} = await this.afAuth.signInWithEmailAndPassword(email, password);
-            this.updateUserData(user);
+            await this.updateUserData(user);
             console.log(user);
+            console.log('el UID ES', user.uid);
             return user;
         } catch (error) {
             console.log('Error-->', error);
@@ -103,6 +105,19 @@ export class AuthService {
         };
         return userRef.set(data, {merge: true});
     }
+
+    // uploadImage(file: any, path: string, nombre: string): Promise<string> {
+    //     return new Promise(resolve => {
+    //         const filePath = path + '/' + nombre;
+    //         const ref = this.storage.ref(filePath);
+    //         const task = ref.put(file);
+    //         task.snapshotChanges().pipe(
+    //             finalize(() => {
+    //                 const downloadURL = ref.getDownloadURL();
+    //             })
+    //         ).subscribe();
+    //     });
+    // }
 
     public insertData(collection, datauser) {
         return this.afs.collection(collection).add(datauser);

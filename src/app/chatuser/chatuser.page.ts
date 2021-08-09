@@ -12,12 +12,14 @@ export class ChatuserPage implements OnInit {
     uid;
     chats = [];
     textMsg;
-
+    dp;
     constructor() {
         this.name = sessionStorage.getItem('name');
         this.ouid = sessionStorage.getItem('uid');
         this.uid = JSON.parse(localStorage.getItem('usuario'));
+        console.log(this.ouid);
         console.log(this.uid);
+        console.log(this.name);
         firebase.firestore().collection('chats').doc(this.uid.uid).collection(this.ouid).orderBy('time').onSnapshot(snap => {
             this.chats = [];
             snap.forEach(child => {

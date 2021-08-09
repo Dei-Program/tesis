@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import firebase from 'firebase';
 import {Router} from '@angular/router';
+import {AuthService} from '../services/auth.service';
 
 @Component({
   selector: 'app-admin',
@@ -9,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class AdminPage implements OnInit {
  public email2 = true;
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
       firebase.auth().onAuthStateChanged(user => {
@@ -24,6 +25,16 @@ export class AdminPage implements OnInit {
           }
       });
   }
+    // PARA DESLOGEAR
+    // private salir(): void{
+    //     try{
+    //         if( this.authService.logout() === true){
+    //         console.log(this.authService.logout());
+    //         }
+    //     }
+    //     catch (error){console.log('Error-->', error);
+    //     }
+    // }
     private goUbication(): void {
         this.router.navigate(['ubication']);
     }

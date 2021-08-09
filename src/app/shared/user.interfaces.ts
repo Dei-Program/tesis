@@ -5,3 +5,11 @@ export interface User{
     emailVerified: boolean;
 
 }
+
+export interface DataUser{
+    uid: string;
+    email: string;
+    displayName: string;
+    emailVerified: boolean;
+
+}
