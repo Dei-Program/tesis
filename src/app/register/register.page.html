@@ -1,36 +1,60 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>REGISTRAR USUARIO</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>REGISTRAR USUARIO</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<form>
-  <ion-item lines="full">
-<ion-label position="floating">Email</ion-label>
-<ion-input type="text" #email requeried></ion-input>
-  </ion-item>
-  <ion-item lines="full">
-    <ion-label position="floating">Password</ion-label>
-    <ion-input type="password" #password requeried></ion-input>
-  </ion-item>
-<ion-row>
-  <ion-col>
-    <ion-button type="submit" (click)="onRegister(email, password)" expand="block">
-    REGISTRAR
-    </ion-button>
-  </ion-col>
+    <form>
+        <ion-item lines="full">
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input [(ngModel)]="name" name="name"></ion-input>
+        </ion-item>
+        <ion-item lines="full">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input [(ngModel)]="RegisterUsers.email1" name="email1"></ion-input>
+        </ion-item>
+        <ion-item lines="full">
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password" [(ngModel)]="RegisterUsers.password" name="password"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label class="normal">
+                Foto
+            </ion-label>
+            <ion-buttons slot="end">
+                <ion-button>
+                    <label for="file-upload">
+                        <ion-icon slot="icon-only" name="images"></ion-icon>
+                    </label>
 
-</ion-row>
+                    <input (change)="newImageUpload($event)" id="file-upload" style="display:none" type="file"
+                           accept="image/+" >
+                </ion-button>
+            </ion-buttons>
+        </ion-item>
+        <ion-item lines="full">
+            <ion-label position="floating">Teléfono</ion-label>
+            <ion-input [(ngModel)]="phone" name="phone"></ion-input>
+        </ion-item>
 
-</form>
+        <ion-row>
+            <ion-col>
+                <ion-button type="submit" (click)="onRegister()" expand="block">
+                    REGISTRAR
+                </ion-button>
+            </ion-col>
 
-  <ion-row>
-    <ion-col>
-      <p>
-        <a routerLink="/login"> Already a have account?</a>
-      </p>
-    </ion-col>
+        </ion-row>
+        <img class="pic" [src]="newImage">
+    </form>
 
-  </ion-row>
+    <ion-row>
+        <ion-col>
+            <p>
+                <a routerLink="/login"> Already a have account?</a>
+            </p>
+        </ion-col>
+
+    </ion-row>
 </ion-content>
