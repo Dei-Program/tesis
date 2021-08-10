@@ -118,7 +118,7 @@ export class UbicationPage implements OnInit, AfterViewInit {
             zoom: 20,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-        // load.dismiss();
+        // load.dismiss(); si es que
         google.maps.event
             .addListenerOnce(this.mapRef, 'idle', () => {
                 console.log('cargado');
