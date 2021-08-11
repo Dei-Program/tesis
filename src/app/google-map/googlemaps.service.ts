@@ -4,7 +4,6 @@ import {User} from '../shared/user.interfaces';
 import {NavController} from '@ionic/angular';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore} from '@angular/fire/firestore';
-import {subscribeOn} from 'rxjs/operators';
 
 
 @Injectable({
@@ -19,9 +18,9 @@ export class GooglemapsService {
     async ionViewDidLoad(user: User) {
         try {
             const uid = user.uid;
-            let hear = null;
-            let lat = null;
-            let long = null;
+            let hear ;
+            let lat ;
+            let long ;
             const name = user.email;
             hear = this.geolocation.watchPosition();
             hear.subscribe(res => {

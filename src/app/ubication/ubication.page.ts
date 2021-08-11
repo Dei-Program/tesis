@@ -1,4 +1,6 @@
-import {AfterViewInit, Component, Input, Renderer2, OnInit, ElementRef} from '@angular/core';
+import {AfterViewInit, Component, Input, Renderer2, OnInit, ElementRef, OnChanges, SimpleChanges} from '@angular/core';
+import {User} from '../shared/user.interfaces';
+
 declare let google;
 import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {LoadingController, NavController} from '@ionic/angular';
@@ -11,8 +13,9 @@ import firebase from 'firebase';
     templateUrl: './ubication.page.html',
     styleUrls: ['./ubication.page.scss'],
 })
-export class UbicationPage implements OnInit, AfterViewInit {
+export class UbicationPage implements OnInit, AfterViewInit, OnChanges {
     mapRef = null;
+    interval: any;
     public mapElementRef: ElementRef;
     markers: Marker[] = [
         {
@@ -58,7 +61,7 @@ export class UbicationPage implements OnInit, AfterViewInit {
         });
         firebase.firestore().collection('users2').get().then(userData => {
             userData.forEach(childData => {
-                if (childData.data().uid !== this.uid) {
+                if (childData.data().uid !== this.uid.uid) {
                     this.users.push(childData.data());
                 }
 
@@ -75,30 +78,38 @@ export class UbicationPage implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
-        this.getCurrentLocation();
     }
 
     ngAfterViewInit() {
+        this.getCurrentLocation();
         this.listeningCoords(this.uid.uid);
-        // this.locateUser();
     }
 
-    async listeningCoords(uid2: string) {
-        try {
-            await firebase.firestore().collection('CoordsUser').doc(uid2).onSnapshot
-            (document => {
-                this.myLatLng =
-                    {
-                        lat: this.lat = document.data().lat,
-                        lng: this.long = document.data().long
-                    };
-                console.log('las corrdenadas perro son' + this.lat);
-                this.marker.setPosition(this.myLatLng);
-            })
-            ;
-        } catch (error) {
-            console.log('Error-->', error);
-        }
+    ngOnChanges(changes: SimpleChanges) {
+    }
+
+    listeningCoords(uid2: string) {
+        firebase.firestore().collection('CoordsUser').doc(uid2).onSnapshot
+        (document => {
+
+            this.lat = parseFloat(document.data().lat);
+            this.long = parseFloat(document.data().long);
+            this.myLatLng =
+                {
+                    lat: this.lat,
+                    lng: this.long
+                };
+            console.log('las corrdenadas perro son' + this.lat);
+            console.log('las corrdenadas perro son' + this.myLatLng);
+            this.marker.setPosition(this.myLatLng);
+        })
+        ;
+        firebase.firestore().collection('users2').doc(uid2).get().then(userData => {
+            this.name = userData.data().name;
+            this.email = userData.data().email;
+            this.dp = userData.data().dp;
+            console.log('NOMBRE ES' + this.name);
+        });
     }
 
     async getCurrentLocation() {
@@ -106,11 +117,6 @@ export class UbicationPage implements OnInit, AfterViewInit {
         // let myLatLng;
         load = await this.loadCtrl.create();
         load.present();
-        console.log('COORDENADAS PROPIA SON: ', this.lat);
-        this.myLatLng = {
-            lat: this.lat,
-            lng: this.long
-        };
         console.log('COORDENADAS PROPIA SON: ', this.myLatLng);
         const mapEle: HTMLElement = document.getElementById('map');
         this.mapRef = new google.maps.Map(mapEle, {
