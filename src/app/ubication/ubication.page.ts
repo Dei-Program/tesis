@@ -74,6 +74,7 @@ export class UbicationPage implements OnInit, AfterViewInit, OnChanges {
         // sessionStorage.setItem('name', name);
         // this.nav.navigateForward('/chatuser');
         console.log('EL UID MIO ES');
+        this.getCurrentLocation();
         this.listeningCoords(uid);
     }
 
@@ -101,7 +102,7 @@ export class UbicationPage implements OnInit, AfterViewInit, OnChanges {
                 };
             console.log('las corrdenadas perro son' + this.lat);
             console.log('las corrdenadas perro son' + this.myLatLng);
-            this.marker.setPosition(this.myLatLng);
+            // this.marker.setPosition(this.myLatLng);
         })
         ;
         firebase.firestore().collection('users2').doc(uid2).get().then(userData => {
