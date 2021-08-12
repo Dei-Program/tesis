@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    LoginPageRoutingModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        LoginPageRoutingModule,
+        ButtonModule
+    ],
   declarations: [LoginPage]
 })
 export class LoginPageModule {}
