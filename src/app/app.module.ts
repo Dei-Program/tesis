@@ -15,6 +15,7 @@ import { environment} from '../environments/environment';
 import {ButtonModule} from 'primeng/button';
 import { GoogleMapComponent} from './google-map/google-map.component';
 import { Geolocation} from '@ionic-native/geolocation/ngx';
+import {PushNotificationService} from './services/push-notification.service';
 
 @NgModule({
   declarations: [AppComponent,
@@ -30,6 +31,7 @@ import { Geolocation} from '@ionic-native/geolocation/ngx';
     AngularFirestoreModule,
   ],
   providers: [
+      PushNotificationService,
     StatusBar,
     SplashScreen,
     Geolocation,

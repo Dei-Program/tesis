@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, Renderer2, OnInit, ElementRef, OnChanges, SimpleChanges} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, Renderer2, OnInit, ElementRef, OnChanges, SimpleChanges} from '@angular/core';
 import {User} from '../shared/user.interfaces';
 
 declare let google;
@@ -13,7 +13,7 @@ import firebase from 'firebase';
     templateUrl: './ubication.page.html',
     styleUrls: ['./ubication.page.scss'],
 })
-export class UbicationPage implements OnInit, AfterViewInit, OnChanges {
+export class UbicationPage implements OnInit, AfterViewInit, OnChanges, OnDestroy {
     mapRef = null;
     interval: any;
     public mapElementRef: ElementRef;
@@ -74,25 +74,28 @@ export class UbicationPage implements OnInit, AfterViewInit, OnChanges {
         // sessionStorage.setItem('name', name);
         // this.nav.navigateForward('/chatuser');
         console.log('EL UID MIO ES');
-        this.getCurrentLocation();
+        this.ngOnDestroy();
         this.listeningCoords(uid);
+        this.getCurrentLocation(uid);
     }
 
     ngOnInit() {
+        this.listeningCoords(this.uid.uid);
     }
 
     ngAfterViewInit() {
-        this.getCurrentLocation();
-        this.listeningCoords(this.uid.uid);
+        this.getCurrentLocation(this.uid.uid);
+
     }
 
     ngOnChanges(changes: SimpleChanges) {
     }
+    ngOnDestroy() {
+    }
 
-    listeningCoords(uid2: string) {
-        firebase.firestore().collection('CoordsUser').doc(uid2).onSnapshot
+    listeningCoords(uid: string) {
+        firebase.firestore().collection('CoordsUser').doc(uid).onSnapshot
         (document => {
-
             this.lat = parseFloat(document.data().lat);
             this.long = parseFloat(document.data().long);
             this.myLatLng =
@@ -105,7 +108,7 @@ export class UbicationPage implements OnInit, AfterViewInit, OnChanges {
             // this.marker.setPosition(this.myLatLng);
         })
         ;
-        firebase.firestore().collection('users2').doc(uid2).get().then(userData => {
+        firebase.firestore().collection('users2').doc(this.uid.uid).get().then(userData => {
             this.name = userData.data().name;
             this.email = userData.data().email;
             this.dp = userData.data().dp;
@@ -113,7 +116,7 @@ export class UbicationPage implements OnInit, AfterViewInit, OnChanges {
         });
     }
 
-    async getCurrentLocation() {
+    async getCurrentLocation(uid: string) {
         let load;
         // let myLatLng;
         load = await this.loadCtrl.create();

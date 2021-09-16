@@ -45,7 +45,11 @@ const routes: Routes = [
   {
     path: 'chatuser',
     loadChildren: () => import('./chatuser/chatuser.module').then( m => m.ChatuserPageModule)
+  },  {
+    path: 'notification',
+    loadChildren: () => import('./notification/notification.module').then( m => m.NotificationPageModule)
   }
+
 
 
 ];

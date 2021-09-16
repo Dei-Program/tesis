@@ -35,10 +35,10 @@ export class AdminPage implements OnInit {
     //     catch (error){console.log('Error-->', error);
     //     }
     // }
-    private goUbication(): void {
+    public goUbication(): void {
         this.router.navigate(['ubication']);
     }
-    private goChat(): void {
+    public goChat(): void {
         this.router.navigate(['chat']);
     }
 
