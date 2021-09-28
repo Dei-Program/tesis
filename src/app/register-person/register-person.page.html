@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-toolbar color="success">
+        <p align="center"><strong>Datos Registro</strong></p>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item>
+            <ion-label> Nombre:</ion-label>
+            <ion-input [(ngModel)]="newRegister.nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label> Cedula:</ion-label>
+            <ion-input [(ngModel)]="newRegister.cedula"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label>Fecha Ingreso</ion-label>
+            <ion-input >
+            <!-- <ion-label> Fecha/Hora Ingreso:</ion-label>
+             <ion-input [(ngModel)]="newRegister.fecha"></ion-input>-->
+
+            <ion-datetime [(ngModel)]="newRegister.fecha" type="input" placeholder="Fecha"
+                          value="{{ fechaIngre | date: 'yyyy-MM-dd ' }}"
+                          display-format="MMM DD, YYYY "
+                          cancelText="Cancelar"
+                          [ngModel]="fechaIngre"
+                          (ionChange)="cambioFecha( $event )"
+            >
+
+            </ion-datetime>
+        </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Hora Ingreso</ion-label>
+            <ion-input >
+                <!-- <ion-label> Fecha/Hora Ingreso:</ion-label>
+                 <ion-input [(ngModel)]="newRegister.fecha"></ion-input>-->
+
+                <ion-datetime [(ngModel)]="newRegister.hora" type="input" placeholder="Hora"
+                              value="{{ fechaIngre | date: 'HH:mm' }}"
+                              display-format="HH:mm"
+                              cancelText="Cancelar!!!"
+                              [ngModel]="fechaIngre"
+                              (ionChange)="cambioFecha( $event )"
+                >
+
+                </ion-datetime>
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label> Motivo:</ion-label>
+            <ion-input [(ngModel)]="newRegister.motivo"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label></ion-label>
+
+
+        </ion-item>
+        <ion-button (click)="save();goMenu3()" expand="block">
+            Registrar
+        </ion-button>
+    </ion-list>
+</ion-content>

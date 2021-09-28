@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>report</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style=" margin: auto; width: 50%; " >
+    <button (click)="exportexcel()">Export to Excel</button>
+
+    <table id="excel-table">
+      <tr>
+        <th>Nombre</th>
+        <th>Cedula</th>
+        <th>Fecha</th>
+        <th>Motivo</th>
+      </tr>
+      <tr *ngFor="let registerPerson of Items">
+        <td> {{registerPerson.nombre}} </td>
+        <td> {{registerPerson.cedula}} </td>
+        <td> {{registerPerson.fecha}} </td>
+        <td> {{registerPerson.motivo}} </td>
+      </tr>
+    </table>
+  </div>
+</ion-content>
