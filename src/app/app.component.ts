@@ -4,6 +4,7 @@ import {Platform} from '@ionic/angular';
 import {SplashScreen} from '@ionic-native/splash-screen/ngx';
 import {StatusBar} from '@ionic-native/status-bar/ngx';
 import {PushNotificationService} from './services/push-notification.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -48,6 +49,7 @@ export class AppComponent implements OnInit {
     public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
 
     constructor(
+        private router: Router,
         private notificacion: PushNotificationService,
         private platform: Platform,
         private splashScreen: SplashScreen,
@@ -77,5 +79,8 @@ export class AppComponent implements OnInit {
         if (path !== undefined) {
             this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
         }
+    }
+    public goMenu1(): void {
+        this.router.navigate(['admin']);
     }
 }

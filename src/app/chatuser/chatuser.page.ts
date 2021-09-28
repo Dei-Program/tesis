@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import firebase from 'firebase';
-
+import { PhotoService } from '../services/photo.service';
 @Component({
     selector: 'app-chatuser',
     templateUrl: './chatuser.page.html',
@@ -13,7 +13,8 @@ export class ChatuserPage implements OnInit {
     chats = [];
     textMsg;
     dp;
-    constructor() {
+
+    constructor(public photoService: PhotoService) {
         this.name = sessionStorage.getItem('name');
         this.ouid = sessionStorage.getItem('uid');
         this.uid = JSON.parse(localStorage.getItem('usuario'));
@@ -45,6 +46,9 @@ export class ChatuserPage implements OnInit {
         }).then(() => {
             this.textMsg = '';
         });
+    }
+    addPhotoToGallery() {
+        this.photoService.addNewToGallery();
     }
 }
 

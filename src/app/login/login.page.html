@@ -1,27 +1,21 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>INGRESAR</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
   <ion-card>
-    <img src="assets/img/eliteseg.jpg" />
+    <p align="center">
+    <img class="center-span" src="assets/img/eliteseg.jpg" />
+    </p>
     <ion-card-header>
-      <ion-card-title>ELITESEG CIA. LTDA</ion-card-title>
+      <ion-card-title class="center-span" >ELITESEG CIA. LTDA</ion-card-title>
     </ion-card-header>
-    <ion-card-content>
-      Brindamos servicios y asesorías estratégicas en seguridad privada de manera ágil y
-      personalizada para garantizar la protección de la vida y de los bienes de nuestros clientes.
-    </ion-card-content>
   </ion-card>
   <form>
     <ion-item lines="full">
-      <ion-label position="floating">Email</ion-label>
+      <ion-label position="floating">Correo Electronico</ion-label>
       <ion-input type="text" #email requeried></ion-input>
     </ion-item>
     <ion-item lines="full">
-      <ion-label position="floating">Password</ion-label>
+      <ion-label position="floating">Contraseña</ion-label>
       <ion-input type="password" #password requeried></ion-input>
     </ion-item>
     <ion-row>
@@ -43,27 +37,31 @@
     <ion-row>
       <ion-col>
 
-        <p class="ion-text-end">
-          <a routerLink="/forgot-password"> FORGOT PASSWORD??</a>
+        <p class="ion-align-items-start">
+          <ion-icon name="key-outline" slot="end"></ion-icon>
+          <a routerLink="/forgot-password"> Recuperar contraseña</a>
         </p>
       </ion-col>
 
     </ion-row>
-    <span class="center-span"> or </span>
-<ion-row>
-  <ion-col>
-    <ion-button  type="submit" color="danger" (click)="onLoginGoogle()"
-    expand="block">
-Login with GOOGLE
-    </ion-button>
-  </ion-col>
+   <!--
+    <span class="center-span"> o </span>
+    <ion-row>
+      <ion-col>
+        <ion-button  type="submit" color="danger" (click)="onLoginGoogle()"
+                     expand="block">
+          ENTRAR CON GOOGLE
+        </ion-button>
+      </ion-col>
 
-</ion-row>
+    </ion-row>-->
+
   </form>
   <ion-row>
     <ion-col>
-    <p class="ion-text-end">
-      <a routerLink="/register"> CREATE NEW ACCOUNT!!</a>
+    <p class="ion-align-items-start">
+      <ion-icon name="accessibility-outline" slot="end"></ion-icon>
+      <a routerLink="/register">Registrarse</a>
     </p>
     </ion-col>
 

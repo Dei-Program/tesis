@@ -2,12 +2,10 @@
   width: 100%;
   border: 1px solid var(--ion-color-medium);
   border-radius: 6px;
-  background: #ffffff;
+  background: #fff;
   resize: none;
   margin-top: 0px;
   --padding-start: 8px;
-
-
 }
 
 .message {
@@ -15,19 +13,20 @@
   border-radius: 10px !important;
   margin-bottom: 4px !important;
   white-space: pre-wrap;
-
 }
 
-.my_message {
-  background: var(--ion-color-tertiary);
-  color: #e0bb2e;
+.my-message {
+  background: var(--ion-color-success);
+  color: #fff;
 }
+
 .other-message {
-  background: var(--ion-color-secondary);
-  color: #ffffff;
+  background: var(--ion-color-warning);
+  color: #fff;
 }
+
 .time {
-  color: #4c8dff;
+  color: #dfdfdf;
   float: right;
   font-size: small;
 }

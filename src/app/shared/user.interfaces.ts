@@ -13,3 +13,12 @@ export interface DataUser{
     emailVerified: boolean;
 
 }
+
+export interface RegisterPerson{
+    nombre: string;
+    cedula: number;
+    fecha: string;
+    hora: string;
+    motivo: string;
+    id: string;
+}

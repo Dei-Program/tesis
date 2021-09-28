@@ -48,6 +48,18 @@ const routes: Routes = [
   },  {
     path: 'notification',
     loadChildren: () => import('./notification/notification.module').then( m => m.NotificationPageModule)
+  },
+  {
+    path: 'listado',
+    loadChildren: () => import('./listado/listado.module').then( m => m.ListadoPageModule)
+  },
+  {
+    path: 'register-person',
+    loadChildren: () => import('./register-person/register-person.module').then( m => m.RegisterPersonPageModule)
+  },
+  {
+    path: 'report',
+    loadChildren: () => import('./report/report.module').then( m => m.ReportPageModule)
   }
 
 

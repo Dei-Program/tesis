@@ -3,7 +3,6 @@ import {Injectable} from '@angular/core';
 import {User} from '../shared/user.interfaces';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
-import {AngularFireStorage} from '@angular/fire/storage';
 import {Observable, of} from 'rxjs';
 import {finalize, switchMap} from 'rxjs/operators';
 import 'firebase/auth';
@@ -14,8 +13,7 @@ import 'firebase/firestore';
 })
 export class AuthService {
     public user$: Observable<User>;
-    constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore, private db: AngularFirestore,
-                private storage: AngularFireStorage) {
+    constructor(public afAuth: AngularFireAuth, private afs: AngularFirestore) {
         this.user$ = this.afAuth.authState.pipe(
             switchMap((user) => {
                 if (user) {
@@ -48,7 +46,7 @@ export class AuthService {
             const {user} = await this.afAuth.createUserWithEmailAndPassword(email, password);
             await this.sendVerificationEmail();
             const uid = user.uid;
-            await this.db.collection('users2').doc(uid).set({
+            await this.afs.collection('users2').doc(uid).set({
                 name,
                 uid,
                 email,
@@ -122,6 +120,4 @@ export class AuthService {
     public insertData(collection, datauser) {
         return this.afs.collection(collection).add(datauser);
     }
-
-
 }

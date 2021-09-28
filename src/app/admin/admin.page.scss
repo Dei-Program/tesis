@@ -1,0 +1,39 @@
+$colors: (
+        primary:    #488aff,
+        secondary:  #32db64,
+        danger:     #f53d3d,
+        light:      #f4f4f4,
+        dark:       #222
+);
+.round1 {
+  --width: 60px;
+  --height: 60px;
+  --border-radius: 50%;
+  --vertical-align: middle;
+  --padding-start: 10px;
+  --padding-end: 10px;
+};
+.round {
+  --width: 100px;
+  --height: 100px;
+  --border-radius: 10%;
+  --vertical-align: middle;
+  --padding-start: 50;
+  --padding-end: 50px;
+};
+
+.sqare_button {
+  height: 80px;
+  --vertical-align: middle;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  --ripple-color: darkcyan;
+  --padding-bottom: 2px !important;
+  --box-shadow: none;
+}
+.vertical {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 10px;
+}

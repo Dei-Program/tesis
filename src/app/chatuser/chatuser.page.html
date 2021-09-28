@@ -11,11 +11,14 @@
 </ion-header>
 
 <ion-content>
+
     <div *ngFor="let chat of chats">
-
-        <ion-item lines="none" *ngIf="chat.uid.uid != uid.uid">
+        <ion-grid aria-setsize="royal" >
+            <ion-row>
+                <ion-col>
+        <ion-item color="secondary"  lines="none" *ngIf="chat.uid.uid != uid.uid">
             <ion-label class="ion-text-left">
-                <p> {{name}}</p>
+                <p> {{ chat.time | date: 'yyyy-MM-dd HH:mm ' }}</p>
                 <h2>
                     <b>
                         {{chat.msg}}
@@ -23,35 +26,59 @@
                 </h2>
             </ion-label>
         </ion-item>
-
+                </ion-col>
+            </ion-row>
+        </ion-grid>
         <!este es mi chat>
-        <ion-item lines="none" *ngIf="chat.uid.uid == uid.uid">
+        <ion-grid>
+            <ion-row>
+            <ion-col>
+        <ion-item color="light"  lines="none" *ngIf="chat.uid.uid == uid.uid">
             <ion-label class="ion-text-right">
-                <p> YOU</p>
-                <h2>
-                    <b>
+               <!-- <p> YOU</p> -->
+                <p> {{ chat.time | date: 'yyyy-MM-dd HH:mm ' }}</p>
+                <h2>  <b>
                         {{chat.msg}}
                     </b>
+
                 </h2>
-                <div class="time ion-text-right">
-                    <br>{{ chat.createAt?.toMillis() | date : 'short'}}
-                </div>
+
             </ion-label>
+
         </ion-item>
+            </ion-col>
+            </ion-row>
+        </ion-grid>
     </div>
 </ion-content>
 <ion-footer>
     <ion-toolbar color="light">
         <ion-row class="ion-align-items-center">
             <ion-col size="10">
-                <ion-textarea autoGrow="true" placeholder="Type here.." class="message-input" rows="1" maxlength="100"
+                <ion-textarea autoGrow="true" placeholder="Escriba.." class="message-input" rows="1" maxlength="100"
                               [(ngModel)]="textMsg" ></ion-textarea>
+                <!--<ion-icon slot="icon-only" name="document-attach-outline"></ion-icon>
+                <input id="file" type="file" multiple style="width: 100px;" />-->
+
             </ion-col>
+
             <ion-col size="2">
+
                 <ion-button expand="block" fill="clear" color="primary" [disabled]="textMsg === '' "
                             class="msg-btn" (click)="send()">
                     <ion-icon  name="Send" slot="icon-only"></ion-icon>
                 </ion-button>
+                <!--<ion-content>
+                    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+                        <ion-fab-button (click)="addPhotoToGallery()">
+                            <ion-icon name="camera"></ion-icon>
+                        </ion-fab-button>
+                    </ion-fab>
+                </ion-content>-->
+
+                <!--<ion-button (click)='presentActionSheetCamera()'>
+                    <ion-icon name="add-circle-outline"></ion-icon>
+                </ion-button>-->
             </ion-col>
         </ion-row>
     </ion-toolbar>

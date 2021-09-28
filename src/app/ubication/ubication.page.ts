@@ -1,4 +1,13 @@
-import {AfterViewInit, Component, OnDestroy, Renderer2, OnInit, ElementRef, OnChanges, SimpleChanges} from '@angular/core';
+import {
+    AfterViewInit,
+    Component,
+    OnDestroy,
+    Renderer2,
+    OnInit,
+    ElementRef,
+    OnChanges,
+    SimpleChanges
+} from '@angular/core';
 import {User} from '../shared/user.interfaces';
 
 declare let google;
@@ -6,6 +15,7 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {LoadingController, NavController} from '@ionic/angular';
 import {Marker} from '../database/models/markers';
 import firebase from 'firebase';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -46,6 +56,7 @@ export class UbicationPage implements OnInit, AfterViewInit, OnChanges, OnDestro
     map;
 
     constructor(
+        private router: Router,
         private geolocation: Geolocation,
         private loadCtrl: LoadingController,
         public nav: NavController,
@@ -90,6 +101,7 @@ export class UbicationPage implements OnInit, AfterViewInit, OnChanges, OnDestro
 
     ngOnChanges(changes: SimpleChanges) {
     }
+
     ngOnDestroy() {
     }
 
@@ -105,7 +117,7 @@ export class UbicationPage implements OnInit, AfterViewInit, OnChanges, OnDestro
                 };
             console.log('las corrdenadas perro son' + this.lat);
             console.log('las corrdenadas perro son' + this.myLatLng);
-            // this.marker.setPosition(this.myLatLng);
+            this.marker.setPosition(this.myLatLng);
         })
         ;
         firebase.firestore().collection('users2').doc(this.uid.uid).get().then(userData => {
@@ -156,5 +168,9 @@ export class UbicationPage implements OnInit, AfterViewInit, OnChanges, OnDestro
                 // },
                 // animation: google.maps.Animation.DROP,
             });
+    }
+
+    public goMenu2(): void {
+        this.router.navigate(['admin']);
     }
 }

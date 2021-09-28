@@ -1,12 +1,18 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-title>CHAT WITH PERSONAL</ion-title>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-button (click)="goMenu()" fill="clear">
+                <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <p align="center"> SALA DE CHAT </p>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <ion-list-header>
-        PERFIL
+        <strong> PERFIL
+        </strong>
 
     </ion-list-header>
     <ion-item>
@@ -25,7 +31,8 @@
 
 
     <ion-list-header>
-        USUARIOS
+        <strong> USUARIOS
+        </strong>
     </ion-list-header>
     <ion-item lines="none" *ngFor="let user of users" (click)="gotoChat(user.uid,user.name)" button="">
         <ion-avatar slot="start">
