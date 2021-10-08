@@ -1,9 +1,12 @@
 <ion-header>
     <ion-toolbar color="success">
-        <p align="center"><strong>Datos Registro</strong></p>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <p align="center"><strong>DATOS REGISTROS</strong></p>
     </ion-toolbar>
 </ion-header>
-
+<!---holamunod-->
 <ion-content>
     <ion-list>
         <ion-item>
@@ -11,17 +14,19 @@
             <ion-input [(ngModel)]="newRegister.nombre"></ion-input>
         </ion-item>
         <ion-item>
-            <ion-label> Cedula:</ion-label>
+            <ion-label> Cédula:</ion-label>
             <ion-input [(ngModel)]="newRegister.cedula"></ion-input>
-        </ion-item>
+           <!-- <ion-input (change)="validarCedula($event)" maxlength="10" >
+            </ion-input>-->
+            </ion-item>
 
         <ion-item>
-            <ion-label>Fecha Ingreso</ion-label>
+            <ion-label>Fecha Ingreso:</ion-label>
             <ion-input >
             <!-- <ion-label> Fecha/Hora Ingreso:</ion-label>
              <ion-input [(ngModel)]="newRegister.fecha"></ion-input>-->
 
-            <ion-datetime [(ngModel)]="newRegister.fecha" type="input" placeholder="Fecha"
+            <ion-datetime [(ngModel)]="newRegister.fecha" type="input" placeholder=""
                           value="{{ fechaIngre | date: 'yyyy-MM-dd ' }}"
                           display-format="MMM DD, YYYY "
                           cancelText="Cancelar"
@@ -33,12 +38,12 @@
         </ion-input>
         </ion-item>
         <ion-item>
-            <ion-label>Hora Ingreso</ion-label>
+            <ion-label>Hora Ingreso:</ion-label>
             <ion-input >
                 <!-- <ion-label> Fecha/Hora Ingreso:</ion-label>
                  <ion-input [(ngModel)]="newRegister.fecha"></ion-input>-->
 
-                <ion-datetime [(ngModel)]="newRegister.hora" type="input" placeholder="Hora"
+                <ion-datetime [(ngModel)]="newRegister.hora" type="input" placeholder=""
                               value="{{ fechaIngre | date: 'HH:mm' }}"
                               display-format="HH:mm"
                               cancelText="Cancelar!!!"

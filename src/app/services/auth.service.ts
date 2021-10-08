@@ -41,7 +41,7 @@ export class AuthService {
             console.log('Error-->', error);
         }
     }
-    async register(email: string, password: string, name: string, phone: string, dp: string) {
+    async register(email: string, password: string, name: string, phone: string, dp: string, cedula: string) {
         try {
             const {user} = await this.afAuth.createUserWithEmailAndPassword(email, password);
             await this.sendVerificationEmail();
@@ -51,7 +51,8 @@ export class AuthService {
                 uid,
                 email,
                 phone,
-                dp
+                dp,
+                cedula
             });
             return user;
         } catch (error) {

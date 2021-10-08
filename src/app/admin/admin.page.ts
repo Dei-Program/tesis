@@ -3,7 +3,9 @@ import firebase from 'firebase';
 import {Router} from '@angular/router';
 import {AuthService} from '../services/auth.service';
 import {AlertController} from '@ionic/angular';
-import { Vibration } from '@ionic-native/vibration/ngx';
+import {Vibration} from '@ionic-native/vibration/ngx';
+import {MenuController} from '@ionic/angular';
+
 @Component({
     selector: 'app-admin',
     templateUrl: './admin.page.html',
@@ -18,8 +20,8 @@ export class AdminPage implements OnInit {
     users = [];
 
     constructor(private router: Router, public authService: AuthService,
-                public alerta: AlertController, private vibration: Vibration,
-                ) {
+                public alerta: AlertController, private vibration: Vibration, private menu: MenuController
+    ) {
         this.uid = JSON.parse(localStorage.getItem('usuario'));
         console.log(this.uid.uid);
         firebase.firestore().collection('users2').doc(this.uid.uid).get().then(userData => {
@@ -52,6 +54,9 @@ export class AdminPage implements OnInit {
         });
     }
 
+    toogleMenu() {
+        this.menu.toggle();
+    }
     // PARA DESLOGEAR
     // private salir(): void{
     //     try{
@@ -82,13 +87,16 @@ export class AdminPage implements OnInit {
         });
         await miAlerta.present();
     }
-    vibrate(){
+
+    vibrate() {
         this.vibration.vibrate(1000);
         console.log('VIBROOOOO');
     }
+
     public outlog(): void {
         this.router.navigate(['login']);
     }
+
     public goReport(): void {
         this.router.navigate(['report']);
     }

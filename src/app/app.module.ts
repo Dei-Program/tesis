@@ -17,11 +17,12 @@ import { Geolocation} from '@ionic-native/geolocation/ngx';
 import {PushNotificationService} from './services/push-notification.service';
 import { PipesPipe } from './pipes/pipes.pipe';
 import {PipesModule} from './pipes/pipes.module';
+import {MenuComponent} from './components/menu/menu.component';
 
 
 @NgModule({
-  declarations: [AppComponent,
-    GoogleMapComponent],
+    declarations: [AppComponent,
+        GoogleMapComponent, MenuComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -42,7 +43,7 @@ import {PipesModule} from './pipes/pipes.module';
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
   ],
   bootstrap: [AppComponent],
-  exports: [
+  exports: [MenuComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

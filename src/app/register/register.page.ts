@@ -20,6 +20,7 @@ export class RegisterPage implements OnInit {
     public name: string;
     public phone: string;
     public photo: string;
+    cedula: string;
     newImage = '';
     newFile = '';
     RegisterUsers: UserRegister;
@@ -41,7 +42,7 @@ export class RegisterPage implements OnInit {
             this.photo = res;
             console.log(this.photo);
             const user = await this.authService.register(this.RegisterUsers.email1, this.RegisterUsers.password,
-                this.name, this.phone, this.photo);
+                this.name, this.phone, this.photo, this.cedula);
             if (user) {
                 const isVerified = this.authService.isEmailVerified(user);
                 this.redirectUser(isVerified);

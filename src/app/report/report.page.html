@@ -1,26 +1,73 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>report</ion-title>
-  </ion-toolbar>
+<ion-header no-border>
+    <ion-toolbar color="dark">
+        <ion-buttons slot="start">
+            <ion-button (click)="returnMenu1()" fill="clear">
+                <ion-icon name="arrow-back" slot="icon-only"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <p align="center"><strong>VISITANTES REGISTRADOS</strong></p>
+    </ion-toolbar>
+    <ion-searchbar animated (ionChange)="buscar1($event)" placeholder="Buscar por Nombre"></ion-searchbar>
 </ion-header>
+<ion-item>
+    <ion-icon name="calendar-outline"></ion-icon>
+    <ion-input (ionChange)="buscarFe1($event)">
+        <!-- <ion-label> Fecha/Hora Ingreso:</ion-label>
+         <ion-input [(ngModel)]="newRegister.fecha"></ion-input>-->
 
+        <ion-datetime [(ngModel)]="fechaIngre" type="input" placeholder="Buscar por Fecha"
+                      value="{{ fechaIngre | date: 'yyyy-MM-dd ' }}"
+                      display-format="MMM DD, YYYY "
+                      cancelText="Cancelar"
+                      [ngModel]="fechaIngre"
+                      (ionChange)="cambioFe1( $event )">
+
+        </ion-datetime>
+    </ion-input>
+</ion-item>
 <ion-content>
-  <div style=" margin: auto; width: 50%; " >
-    <button (click)="exportexcel()">Export to Excel</button>
+    <form>
+        <div>
+            <!--<div style=" margin: auto; width: 50%; " >
+              <ion-buttons slot="start"  >
+              <ion-button (click)="exportexcel()" fill="clear" >
+                <ion-icon name="document-text-outline" slot="icon-only"> </ion-icon>
+                <span align="center" > EXPORTAR EN EXCEL </span>
+              </ion-button>
+              </ion-buttons>-->
+            <ion-button class="round" color="success" fill="solid" (click)="exportexcel()">
+                <ion-icon name="document-text-outline"></ion-icon>
+                <span align="center">EXPORTAR EN EXCEL </span>
+            </ion-button>
+            <ion-button class="round" color="danger" fill="solid" (click)="generatePDF()">
+                <ion-icon name="document-text-outline"></ion-icon>
+                <span align="center">EXPORTAR EN PDF </span>
+            </ion-button>
+        </div>
+    </form>
+            <body>
+            <div style="text-align:center;">
 
-    <table id="excel-table">
-      <tr>
-        <th>Nombre</th>
-        <th>Cedula</th>
-        <th>Fecha</th>
-        <th>Motivo</th>
-      </tr>
-      <tr *ngFor="let registerPerson of Items">
-        <td> {{registerPerson.nombre}} </td>
-        <td> {{registerPerson.cedula}} </td>
-        <td> {{registerPerson.fecha}} </td>
-        <td> {{registerPerson.motivo}} </td>
-      </tr>
-    </table>
-  </div>
+                <table id="excel-table" border="1" style="margin: 0 auto;">
+
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Cédula</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Hora</th>
+                        <th scope="col">Motivo</th>
+                    </tr>
+                    <tr *ngFor="let registerPerson of Items | pipes : textoBuscar: 'nombre' ">
+                        <td> {{registerPerson.nombre}} </td>
+                        <td> {{registerPerson.cedula}} </td>
+                        <td> {{registerPerson.fecha}} </td>
+                        <td> {{registerPerson.hora}} </td>
+                        <td> {{registerPerson.motivo}} </td>
+                    </tr>
+
+                </table>
+            </div>
+            </body>
+
+
 </ion-content>

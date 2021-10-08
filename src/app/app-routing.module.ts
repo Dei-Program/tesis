@@ -60,6 +60,14 @@ const routes: Routes = [
   {
     path: 'report',
     loadChildren: () => import('./report/report.module').then( m => m.ReportPageModule)
+  },
+  {
+    path: 'users-admin',
+    loadChildren: () => import('./users-admin/users-admin.module').then( m => m.UsersAdminPageModule)
+  },
+  {
+    path: 'reports-guard',
+    loadChildren: () => import('./reports-guard/reports-guard.module').then( m => m.ReportsGuardPageModule)
   }
 
 

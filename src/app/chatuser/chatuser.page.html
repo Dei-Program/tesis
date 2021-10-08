@@ -1,9 +1,9 @@
 <ion-header>
     <ion-toolbar color="primary">
-        <ion-buttons slot="end">
+        <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
             <ion-button fill="clear">
-                <ion-icon name="settings" slot="icon-only"></ion-icon>
+                <!--<ion-icon name="settings" slot="icon-only"></ion-icon>-->
             </ion-button>
         </ion-buttons>
         <ion-title>{{name}}</ion-title>
@@ -57,8 +57,8 @@
             <ion-col size="10">
                 <ion-textarea autoGrow="true" placeholder="Escriba.." class="message-input" rows="1" maxlength="100"
                               [(ngModel)]="textMsg" ></ion-textarea>
-                <!--<ion-icon slot="icon-only" name="document-attach-outline"></ion-icon>
-                <input id="file" type="file" multiple style="width: 100px;" />-->
+                <ion-icon slot="icon-only" name="document-attach-outline"></ion-icon>
+                <input id="file" type="file" multiple style="width: 100px;" />
 
             </ion-col>
 

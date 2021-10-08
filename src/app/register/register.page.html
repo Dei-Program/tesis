@@ -1,6 +1,6 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-title>REGISTRAR USUARIO</ion-title>
+    <ion-toolbar color="dark">
+        <p align="center"> <strong>REGISTRAR USUARIO</strong></p>
     </ion-toolbar>
 </ion-header>
 
@@ -11,11 +11,15 @@
             <ion-input [(ngModel)]="name" name="name"></ion-input>
         </ion-item>
         <ion-item lines="full">
-            <ion-label position="floating">Email</ion-label>
+            <ion-label position="floating">Cédula</ion-label>
+            <ion-input [(ngModel)]="cedula" name="cedula"></ion-input>
+        </ion-item>
+        <ion-item lines="full">
+            <ion-label position="floating">Correo Electrónico</ion-label>
             <ion-input [(ngModel)]="RegisterUsers.email1" name="email1"></ion-input>
         </ion-item>
         <ion-item lines="full">
-            <ion-label position="floating">Password</ion-label>
+            <ion-label position="floating">Contraseña</ion-label>
             <ion-input type="password" [(ngModel)]="RegisterUsers.password" name="password"></ion-input>
         </ion-item>
         <ion-item>
@@ -51,8 +55,8 @@
 
     <ion-row>
         <ion-col>
-            <p>
-                <a routerLink="/login"> Already a have account?</a>
+            <p align="center">
+                <a routerLink="/login"> Ya tengo una cuenta</a>
             </p>
         </ion-col>
 

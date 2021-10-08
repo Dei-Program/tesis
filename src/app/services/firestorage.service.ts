@@ -45,7 +45,10 @@ export class FirestorageService {
         const ref = this.FireStore.collection<tipo>(enlace);
         return ref.doc(id).set(data);
     }
-
+    createDoc(data: any, path: string, id: string){
+        const collection = this.FireStore.collection(path);
+        return collection.doc(id).valueChanges();
+    }
     creatId() {
         return this.FireStore.createId();
     }
@@ -53,5 +56,14 @@ export class FirestorageService {
     getCollectionChanges<tipo>(path: string): Observable<tipo[]> {
         const ref = this.FireStore.collection<tipo>(path);
         return ref.valueChanges();
+    }
+
+    getCollection<tipo>(path: string) {
+        const collection = this.FireStore.collection<tipo>(path);
+        return collection.valueChanges();
+    }
+    deleteDoc(path: string, id: string){
+        const collection = this.FireStore.collection(path);
+        return collection.doc(id).delete();
     }
 }

@@ -14,6 +14,8 @@ export class ListadoPage implements OnInit {
     @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
     data: any[] = Array(20);
     textoBuscar = '';
+    fechaBuscar = '';
+    fechaIngre: Date = new Date();
 
     constructor(
         private router: Router,
@@ -66,5 +68,11 @@ export class ListadoPage implements OnInit {
 
     buscar(event) {
         this.textoBuscar = event.detail.value;
+    }
+    buscarFecha(event) {
+        this.fechaBuscar = event.detail.value;
+    }
+    cambioFecha2(event) {
+        console.log('ionCahnge', event);
     }
 }
