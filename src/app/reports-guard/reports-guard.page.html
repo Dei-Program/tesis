@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar  color="dark">
+    <ion-buttons slot="start"><ion-back-button></ion-back-button></ion-buttons>
+    <ion-title>REGISTRO DE REPORTES</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form>
+    <ion-item lines="full">
+      <ion-label position="floating"> Nombre </ion-label>
+      <ion-input [(ngModel)]="newGuard.name" name="name" requeried></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Hora Entrada</ion-label>
+      <ion-input [(ngModel)]="newGuard.time_in" name="cedula" requeried></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Hora Salida</ion-label>
+      <ion-input [(ngModel)]="newGuard.time_out" name="email1" requeried></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Titulo de la Novedad</ion-label>
+      <ion-textarea  [(ngModel)]="newGuard.obs" type="password"  name="password" requeried></ion-textarea>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Detalles</ion-label>
+      <ion-textarea [(ngModel)]="newGuard.details" name="phone" requeried></ion-textarea>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="guardarUser()" type="submit"  expand="block">
+          GUARDAR
+        </ion-button>
+      </ion-col>
+
+    </ion-row>
+    <img class="pic">
+  </form>
+  <ion-toolbar  >
+    <p align="center"><strong>Lista de Reportes</strong></p>
+  </ion-toolbar>
+  <ion-item *ngFor="let guard of guards">
+    <ion-label class="normal">{{guard.name}}</ion-label>
+    <ion-buttons slot="end">
+      <ion-button (click)="newGuard = guard">
+        <ion-icon slot="icon-only" name="create-sharp"></ion-icon>
+      </ion-button>
+      <ion-button (click)="deleteProducto(guard)">
+        <ion-icon slot="icon-only" color="dark" name="trash-bin"></ion-icon>
+      </ion-button>
+      <ion-button (click)="generatePDF(guard.name, guard.obs,guard.time_in,guard.time_out, guard.details)" color="danger"><strong > <p>Generar PDF</p></strong>
+        <ion-icon color="danger" name="document-text-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-item>
+</ion-content>

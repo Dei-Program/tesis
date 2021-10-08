@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar  color="dark">
+    <ion-buttons slot="start"><ion-back-button></ion-back-button></ion-buttons>
+    <ion-title>ADMINISTRAR USUARIOS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form>
+    <ion-item lines="full">
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input [(ngModel)]="newProducto.name" name="name" requeried></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Cedula</ion-label>
+      <ion-input [(ngModel)]="newProducto.cedula" name="cedula" requeried></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Email</ion-label>
+      <ion-input disabled="true" [(ngModel)]="newProducto.email" name="email1" requeried></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input disabled="true" [(ngModel)]="newProducto.email" type="password"  name="password" requeried></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label class="normal">
+        Foto
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button>
+          <label for="file-upload">
+            <ion-icon slot="icon-only" name="images"></ion-icon>
+          </label>
+
+          <input  id="file-upload" style="display:none" type="file"
+                 accept="image/+" >
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Teléfono</ion-label>
+      <ion-input  [(ngModel)]="newProducto.phone" name="phone" requeried></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="guardarUser()" type="submit"  expand="block">
+          GUARDAR
+        </ion-button>
+      </ion-col>
+
+    </ion-row>
+    <img class="pic">
+  </form>
+
+  <ion-item *ngFor="let producto of productos">
+    <ion-label class="normal">{{producto.name}}</ion-label>
+    <ion-buttons slot="end">
+      <ion-button (click)="newProducto = producto">
+        <ion-icon slot="icon-only" name="create-sharp"></ion-icon>
+      </ion-button>
+      <ion-button (click)="deleteProducto(producto)">
+        <ion-icon slot="icon-only" color="danger" name="trash-bin"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-item>
+</ion-content>
